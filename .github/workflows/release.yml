@@ -38,7 +38,7 @@ jobs:
       - name: Restaurar el wrapper de Gradle
         run: |
           cd android
-          if [ ! -f gradlew ]; then gradle wrapper --gradle-version 8.9; fi
+          if [ ! -f gradlew ]; then gradle wrapper --gradle-version 8.13; fi
 
       - name: Compilar APK de release
         run: flutter build apk --release

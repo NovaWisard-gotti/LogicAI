@@ -124,7 +124,7 @@ flutter build apk --release
 
 > El repositorio no incluye el binario `gradle-wrapper.jar` ni el script
 > `gradlew`. Si tu entorno no los genera solo, créalos una vez con
-> `cd android && gradle wrapper --gradle-version 8.9`. El flujo de CI ya lo
+> `cd android && gradle wrapper --gradle-version 8.13`. El flujo de CI ya lo
 > hace automáticamente.
 
 Ejecutar las pruebas:
