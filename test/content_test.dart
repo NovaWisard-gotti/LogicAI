@@ -9,8 +9,9 @@ import 'package:logicai/engine/logic_engine.dart';
 /// resolver, o si una opcion incorrecta resulta ser correcta, la prueba falla.
 AppContent loadContent() {
   final file = File('assets/content/content.json');
-  expect(file.existsSync(), isTrue,
-      reason: 'Falta assets/content/content.json');
+  if (!file.existsSync()) {
+    throw StateError('Falta assets/content/content.json');
+  }
   return AppContent.fromJson(
       json.decode(file.readAsStringSync()) as Map<String, dynamic>);
 }
