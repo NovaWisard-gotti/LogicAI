@@ -45,6 +45,11 @@ void main() {
     await tester.pumpAndSettle();
 
     expect(find.text('Laboratorio de logica'), findsWidgets);
+
+    // La tarjeta "Modulos de fundamentos" queda mas abajo del panel inicial:
+    // el ListView solo construye lo que esta cerca de la vista, asi que hay
+    // que desplazarlo antes de poder encontrar el texto.
+    await tester.scrollUntilVisible(find.text('Modulos de fundamentos'), 300);
     expect(find.text('Modulos de fundamentos'), findsWidgets);
     expect(find.byType(NavigationBar), findsOneWidget);
   });
