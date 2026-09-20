@@ -122,10 +122,12 @@ flutter build apk --release
 # build/app/outputs/flutter-apk/app-release.apk
 ```
 
-> El repositorio no incluye el binario `gradle-wrapper.jar` ni el script
-> `gradlew`. Si tu entorno no los genera solo, créalos una vez con
-> `cd android && gradle wrapper --gradle-version 8.13`. El flujo de CI ya lo
-> hace automáticamente.
+> El repositorio incluye el wrapper de Gradle (`gradlew`, `gradlew.bat` y
+> `gradle-wrapper.jar`) fijado en la version 8.13, la minima compatible con
+> el Android Gradle Plugin del proyecto. Si alguna vez hace falta
+> regenerarlo, usa una distribucion de Gradle 8.x (no la que traiga
+> preinstalada tu maquina si es 9.6 o superior, porque AGP 8.x no es
+> compatible con Gradle 9.6+).
 
 Ejecutar las pruebas:
 

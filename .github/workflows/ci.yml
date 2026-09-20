@@ -46,7 +46,15 @@ jobs:
       - name: Restaurar el wrapper de Gradle
         run: |
           cd android
-          if [ ! -f gradlew ]; then gradle wrapper --gradle-version 8.13; fi
+          if [ ! -f gradlew ]; then
+            # El Gradle preinstalado en el runner es demasiado nuevo (9.x) y
+            # rompe al evaluar el proyecto con Android Gradle Plugin 8.x, asi
+            # que se usa una distribucion propia y compatible solo para
+            # generar el wrapper.
+            curl -sSL -o /tmp/gradle-bootstrap.zip https://services.gradle.org/distributions/gradle-8.13-bin.zip
+            unzip -q /tmp/gradle-bootstrap.zip -d /tmp
+            /tmp/gradle-8.13/bin/gradle wrapper --gradle-version 8.13
+          fi
 
       - name: Compilar APK de release
         run: flutter build apk --release
