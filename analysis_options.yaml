@@ -1,0 +1,11 @@
+# Reglas de analisis estatico de LogicAI.
+include: package:flutter_lints/flutter.yaml
+
+linter:
+  rules:
+    avoid_print: true
+    use_super_parameters: true
+
+analyzer:
+  errors:
+    todo: ignore

@@ -1,0 +1,56 @@
+name: Release
+
+on:
+  push:
+    tags: ["v*"]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    name: Publicar APK
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Obtener el codigo
+        uses: actions/checkout@v4
+
+      - name: Preparar Java 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: "17"
+
+      - name: Preparar Flutter
+        uses: subosito/flutter-action@v2
+        with:
+          channel: stable
+          cache: true
+
+      - name: Dependencias
+        run: flutter pub get
+
+      - name: Pruebas
+        run: flutter test
+
+      - name: Restaurar el wrapper de Gradle
+        run: |
+          cd android
+          if [ ! -f gradlew ]; then gradle wrapper --gradle-version 8.9; fi
+
+      - name: Compilar APK de release
+        run: flutter build apk --release
+
+      - name: Renombrar el APK
+        run: |
+          mkdir -p dist
+          cp build/app/outputs/flutter-apk/app-release.apk \
+             "dist/LogicAI-${GITHUB_REF_NAME}.apk"
+
+      - name: Crear la publicacion
+        uses: softprops/action-gh-release@v2
+        with:
+          files: dist/*.apk
+          generate_release_notes: true

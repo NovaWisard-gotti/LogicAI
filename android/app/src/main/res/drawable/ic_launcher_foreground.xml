@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+  Icono de LogicAI: una ruta logica.
+  Un nodo de inicio desciende hasta un rombo de decision y de el salen dos
+  caminos distintos hacia dos nodos de resultado. No es un cerebro ni un
+  simbolo generico de inteligencia artificial: representa exactamente lo que
+  hace la aplicacion, seguir el flujo de un programa paso a paso.
+-->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="108dp"
+    android:height="108dp"
+    android:viewportWidth="108"
+    android:viewportHeight="108">
+
+    <!-- Arista: inicio -> decision -->
+    <path
+        android:pathData="M38,36 L50,46"
+        android:strokeColor="#5B6E80"
+        android:strokeWidth="5"
+        android:strokeLineCap="round" />
+
+    <!-- Arista: decision -> resultado izquierdo -->
+    <path
+        android:pathData="M50,60 L34,75"
+        android:strokeColor="#5B6E80"
+        android:strokeWidth="5"
+        android:strokeLineCap="round" />
+
+    <!-- Arista: decision -> resultado derecho (camino tomado) -->
+    <path
+        android:pathData="M66,60 L78,75"
+        android:strokeColor="#B4F02A"
+        android:strokeWidth="5"
+        android:strokeLineCap="round" />
+
+    <!-- Nodo de inicio -->
+    <path
+        android:pathData="M27,30 a7,7 0 1,0 14,0 a7,7 0 1,0 -14,0 z"
+        android:fillColor="#EFF4F8" />
+
+    <!-- Rombo de decision -->
+    <path
+        android:pathData="M58,40 L72,54 L58,68 L44,54 z"
+        android:strokeColor="#B4F02A"
+        android:strokeWidth="5"
+        android:strokeLineJoin="round" />
+
+    <!-- Nodo de resultado izquierdo -->
+    <path
+        android:pathData="M23,81 a7,7 0 1,0 14,0 a7,7 0 1,0 -14,0 z"
+        android:fillColor="#5B6E80" />
+
+    <!-- Nodo de resultado derecho, el camino activo -->
+    <path
+        android:pathData="M74,81 a8,8 0 1,0 16,0 a8,8 0 1,0 -16,0 z"
+        android:fillColor="#B4F02A" />
+</vector>

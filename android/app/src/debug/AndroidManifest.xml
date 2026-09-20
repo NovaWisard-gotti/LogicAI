@@ -1,0 +1,5 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- La recarga en caliente de Flutter necesita red en depuracion.
+         La aplicacion instalada no usa red en ningun momento. -->
+    <uses-permission android:name="android.permission.INTERNET" />
+</manifest>

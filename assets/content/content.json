@@ -1,0 +1,2214 @@
+{
+ "version": 1,
+ "modules": [
+  {
+   "id": "variables",
+   "order": 1,
+   "title": "Variables y datos",
+   "subtitle": "Crear, asignar, actualizar e intercambiar valores",
+   "icon": "box",
+   "theory": [
+    {
+     "title": "Una variable es un espacio con nombre",
+     "body": "Una variable guarda un valor y puede cambiarlo durante la ejecución. El nombre no cambia; el contenido sí. Cuando el trazador muestra x → 7 está mostrando el estado del programa en ese instante.",
+     "code": "edad = 20\nedad = edad + 1\nmostrar edad"
+    },
+    {
+     "title": "La asignación no es igualdad",
+     "body": "x = x + y no es una ecuación: primero se calcula el lado derecho con los valores actuales y después ese resultado se guarda en x.",
+     "code": "x = 5\ny = 2\nx = x + y"
+    },
+    {
+     "title": "Intercambiar dos valores",
+     "body": "Para intercambiar a y b se necesita una variable auxiliar; si asignas a = b primero, el valor original de a se pierde.",
+     "code": "a = 3\nb = 8\ntemporal = a\na = b\nb = temporal"
+    }
+   ],
+   "exercises": [
+    "var-01",
+    "var-02",
+    "var-03",
+    "var-04"
+   ]
+  },
+  {
+   "id": "operadores",
+   "order": 2,
+   "title": "Operadores y expresiones",
+   "subtitle": "Aritméticos, de comparación y lógicos",
+   "icon": "calc",
+   "theory": [
+    {
+     "title": "Precedencia",
+     "body": "Primero * / mod, después + -. Los paréntesis cambian el orden. Un error de precedencia produce un resultado numérico válido pero incorrecto, por eso es difícil de detectar sin trazar.",
+     "code": "resultado = 2 + 3 * 4\nmostrar resultado"
+    },
+    {
+     "title": "Comparación y lógica",
+     "body": "Las comparaciones (==, !=, <, <=, >, >=) devuelven verdadero o falso. Los operadores lógicos y, o, no combinan esos valores.",
+     "code": "nota = 14\naprobado = nota >= 11 y nota <= 20\nmostrar aprobado"
+    },
+    {
+     "title": "Residuo",
+     "body": "mod devuelve el residuo de una división entera. Es la forma habitual de comprobar si un número es par: numero mod 2 == 0.",
+     "code": "mostrar 7 mod 2\nmostrar 8 mod 2"
+    }
+   ],
+   "exercises": [
+    "ope-01",
+    "ope-02",
+    "ope-03",
+    "ope-04"
+   ]
+  },
+  {
+   "id": "condicionales",
+   "order": 3,
+   "title": "Condicionales",
+   "subtitle": "Decisiones simples, alternativas y combinadas",
+   "icon": "branch",
+   "theory": [
+    {
+     "title": "si / sino",
+     "body": "La condición se evalúa una sola vez y decide qué bloque se ejecuta. En el trazador verás el paso donde la condición resulta verdadera o falsa.",
+     "code": "edad = 20\nsi edad >= 18 entonces\n    mostrar \"Mayor de edad\"\nsino\n    mostrar \"Menor de edad\"\nfin_si"
+    },
+    {
+     "title": "Alternativas encadenadas",
+     "body": "sino si permite tres o más caminos. Solo se ejecuta la primera rama cuya condición sea verdadera; el orden de las condiciones importa.",
+     "code": "n = 0\nsi n > 0 entonces\n    mostrar \"Positivo\"\nsino si n < 0 entonces\n    mostrar \"Negativo\"\nsino\n    mostrar \"Cero\"\nfin_si"
+    },
+    {
+     "title": "Condiciones combinadas",
+     "body": "y exige que ambas partes sean verdaderas; o basta con una. Confundirlos es uno de los errores lógicos más frecuentes.",
+     "code": "usuario = \"ana\"\nclave = \"1234\"\nacceso = usuario == \"ana\" y clave == \"1234\"\nmostrar acceso"
+    }
+   ],
+   "exercises": [
+    "con-01",
+    "con-02",
+    "con-03",
+    "con-04"
+   ]
+  },
+  {
+   "id": "ciclos",
+   "order": 4,
+   "title": "Ciclos",
+   "subtitle": "Repetición, contadores, acumuladores y condición de salida",
+   "icon": "loop",
+   "theory": [
+    {
+     "title": "mientras",
+     "body": "Repite mientras la condición sea verdadera. Algo dentro del ciclo debe acercar la condición a falso; si no, el ciclo no termina nunca.",
+     "code": "contador = 1\nmientras contador <= 3\n    mostrar contador\n    contador = contador + 1\nfin_mientras"
+    },
+    {
+     "title": "para",
+     "body": "Cuando se sabe cuántas repeticiones hacen falta, para gestiona el avance de la variable de control automáticamente.",
+     "code": "para i = 1 hasta 5\n    mostrar i\nfin_para"
+    },
+    {
+     "title": "Contador y acumulador",
+     "body": "Un contador cuenta cuántas veces ocurre algo (suma 1). Un acumulador suma valores. Ambos deben inicializarse antes del ciclo, normalmente en 0.",
+     "code": "suma = 0\npara i = 1 hasta 4\n    suma = suma + i\nfin_para\nmostrar suma"
+    }
+   ],
+   "exercises": [
+    "cic-01",
+    "cic-02",
+    "cic-03",
+    "cic-04"
+   ]
+  },
+  {
+   "id": "funciones",
+   "order": 5,
+   "title": "Funciones",
+   "subtitle": "Parámetros, retorno y reutilización",
+   "icon": "func",
+   "theory": [
+    {
+     "title": "Entrada, proceso y salida",
+     "body": "Una función recibe parámetros, hace un cálculo y devuelve un valor con retornar. Quien la llama solo necesita el resultado.",
+     "code": "funcion doble(n)\n    retornar n * 2\nfin_funcion\n\nmostrar doble(7)"
+    },
+    {
+     "title": "Ámbito local",
+     "body": "En LogicAI las variables creadas dentro de una función existen solo ahí. El trazador las muestra en un ámbito separado mientras la función se ejecuta.",
+     "code": "funcion area(base, altura)\n    resultado = base * altura / 2\n    retornar resultado\nfin_funcion\n\nmostrar area(6, 4)"
+    },
+    {
+     "title": "retornar corta la ejecución",
+     "body": "Cuando se ejecuta retornar, la función termina de inmediato: las instrucciones que quedan debajo no se ejecutan.",
+     "code": "funcion signo(n)\n    si n >= 0 entonces\n        retornar \"positivo\"\n    fin_si\n    retornar \"negativo\"\nfin_funcion\n\nmostrar signo(-4)"
+    }
+   ],
+   "exercises": [
+    "fun-01",
+    "fun-02",
+    "fun-03",
+    "fun-04"
+   ]
+  },
+  {
+   "id": "arreglos",
+   "order": 6,
+   "title": "Arreglos",
+   "subtitle": "Posiciones, recorrido, búsqueda y acumulación",
+   "icon": "array",
+   "theory": [
+    {
+     "title": "Posiciones desde 0",
+     "body": "Un arreglo de 4 elementos usa las posiciones 0, 1, 2 y 3. longitud(arreglo) devuelve 4, por eso el último índice válido es longitud - 1.",
+     "code": "notas = [12, 15, 8, 18]\nmostrar notas[0]\nmostrar longitud(notas)"
+    },
+    {
+     "title": "Recorrido",
+     "body": "Recorrer es visitar cada posición con un ciclo. El límite correcto es longitud(arreglo) - 1: pasarse produce un índice fuera de rango.",
+     "code": "notas = [12, 15, 8]\npara i = 0 hasta longitud(notas) - 1\n    mostrar notas[i]\nfin_para"
+    },
+    {
+     "title": "Acumular y buscar",
+     "body": "Acumular suma todos los elementos; buscar recorre hasta encontrar un valor y suele necesitar una variable lógica (encontrado) para recordar el resultado.",
+     "code": "datos = [4, 9, 2]\ntotal = 0\npara i = 0 hasta longitud(datos) - 1\n    total = total + datos[i]\nfin_para\nmostrar total"
+    }
+   ],
+   "exercises": [
+    "arr-01",
+    "arr-02",
+    "arr-03",
+    "arr-04"
+   ]
+  },
+  {
+   "id": "objetos",
+   "order": 7,
+   "title": "Introducción a objetos",
+   "subtitle": "Objeto, atributo, estado y operaciones sobre el estado",
+   "icon": "object",
+   "theory": [
+    {
+     "title": "Un objeto agrupa datos relacionados",
+     "body": "En lugar de tres variables sueltas, un objeto reúne los atributos de una misma entidad. El conjunto de sus valores es su estado.",
+     "code": "producto = objeto(nombre: \"Teclado\", precio: 90, stock: 5)\nmostrar producto.nombre"
+    },
+    {
+     "title": "El estado cambia",
+     "body": "Modificar un atributo cambia el estado del objeto sin crear uno nuevo. El inspector de memoria muestra el objeto completo con sus atributos.",
+     "code": "producto = objeto(nombre: \"Teclado\", stock: 5)\nproducto.stock = producto.stock - 2\nmostrar producto.stock"
+    },
+    {
+     "title": "Operaciones sobre el objeto",
+     "body": "Una función que recibe el objeto y actúa sobre su estado cumple el papel de un método. Es la base para entender después la programación orientada a objetos.",
+     "code": "funcion vender(item, cantidad)\n    item.stock = item.stock - cantidad\n    retornar item.stock\nfin_funcion\n\np = objeto(nombre: \"Mouse\", stock: 10)\nmostrar vender(p, 3)"
+    }
+   ],
+   "exercises": [
+    "obj-01",
+    "obj-02",
+    "obj-03",
+    "obj-04"
+   ]
+  }
+ ],
+ "exercises": [
+  {
+   "id": "var-01",
+   "module": "variables",
+   "kind": "trace",
+   "difficulty": "fundamentos",
+   "title": "Qué ocurre en x = x + y",
+   "statement": "Ejecuta el programa paso a paso y observa el momento exacto en que x deja de valer 5. Fíjate en que y no cambia nunca.",
+   "concepts": [
+    "variables",
+    "asignacion"
+   ],
+   "code": "inicio\n    x = 5\n    y = 2\n    x = x + y\n    mostrar x\nfin",
+   "focus": "La asignación calcula primero el lado derecho y después guarda el resultado.",
+   "tests": [
+    {
+     "label": "Caso único",
+     "inputs": []
+    }
+   ],
+   "expected": [
+    "7"
+   ],
+   "expectedByTest": [
+    [
+     "7"
+    ]
+   ],
+   "steps": 4
+  },
+  {
+   "id": "var-02",
+   "module": "variables",
+   "kind": "predict",
+   "difficulty": "fundamentos",
+   "title": "Intercambio con auxiliar",
+   "statement": "Predice qué se mostrará antes de ejecutar.",
+   "concepts": [
+    "variables",
+    "asignacion"
+   ],
+   "code": "a = 3\nb = 8\ntemporal = a\na = b\nb = temporal\nmostrar a, b",
+   "question": {
+    "prompt": "¿Qué muestra el programa?",
+    "options": [
+     "3 8",
+     "8 3",
+     "8 8",
+     "3 3"
+    ],
+    "answer": 1,
+    "explanation": "temporal conserva el 3 original de a, por eso b termina en 3 y a en 8."
+   },
+   "tests": [
+    {
+     "label": "Caso único",
+     "inputs": []
+    }
+   ],
+   "expected": [
+    "8 3"
+   ],
+   "expectedByTest": [
+    [
+     "8 3"
+    ]
+   ]
+  },
+  {
+   "id": "var-03",
+   "module": "variables",
+   "kind": "build",
+   "difficulty": "aplicacion",
+   "title": "Construye el intercambio",
+   "statement": "Ordena las instrucciones para intercambiar los valores de a y b usando una variable auxiliar. El programa debe mostrar 8 3.",
+   "concepts": [
+    "variables",
+    "asignacion"
+   ],
+   "blocks": [
+    {
+     "id": "k1",
+     "text": "a = 3",
+     "indent": 0
+    },
+    {
+     "id": "k2",
+     "text": "b = 8",
+     "indent": 0
+    },
+    {
+     "id": "k3",
+     "text": "temporal = a",
+     "indent": 0
+    },
+    {
+     "id": "k4",
+     "text": "a = b",
+     "indent": 0
+    },
+    {
+     "id": "k5",
+     "text": "b = temporal",
+     "indent": 0
+    },
+    {
+     "id": "k6",
+     "text": "mostrar a, b",
+     "indent": 0
+    },
+    {
+     "id": "d1",
+     "text": "a = temporal",
+     "indent": 0,
+     "distractor": true
+    },
+    {
+     "id": "d2",
+     "text": "temporal = b",
+     "indent": 0,
+     "distractor": true
+    }
+   ],
+   "order": [
+    "k1",
+    "k2",
+    "k3",
+    "k4",
+    "k5",
+    "k6"
+   ],
+   "hint": "Guarda primero el valor que vas a sobrescribir.",
+   "tests": [
+    {
+     "label": "Caso único",
+     "inputs": []
+    }
+   ],
+   "solution": "a = 3\nb = 8\ntemporal = a\na = b\nb = temporal\nmostrar a, b",
+   "expected": [
+    "8 3"
+   ],
+   "expectedByTest": [
+    [
+     "8 3"
+    ]
+   ]
+  },
+  {
+   "id": "var-04",
+   "module": "variables",
+   "kind": "repair",
+   "difficulty": "aplicacion",
+   "title": "Repara el intercambio",
+   "statement": "Este intercambio pierde un valor. Ejecútalo, observa la memoria y corrígelo. Debe mostrar 8 3.",
+   "concepts": [
+    "variables",
+    "depuracion"
+   ],
+   "code": "a = 3\nb = 8\na = b\nb = a\nmostrar a, b",
+   "solution": "a = 3\nb = 8\ntemporal = a\na = b\nb = temporal\nmostrar a, b",
+   "hint": "Cuando escribes a = b, el 3 original desaparece de la memoria.",
+   "focus": "Necesitas una variable auxiliar antes de sobrescribir a.",
+   "tests": [
+    {
+     "label": "Caso único",
+     "inputs": []
+    }
+   ],
+   "expected": [
+    "8 3"
+   ],
+   "expectedByTest": [
+    [
+     "8 3"
+    ]
+   ]
+  },
+  {
+   "id": "ope-01",
+   "module": "operadores",
+   "kind": "trace",
+   "difficulty": "fundamentos",
+   "title": "Precedencia en acción",
+   "statement": "Compara las dos expresiones paso a paso: los mismos números producen resultados distintos.",
+   "concepts": [
+    "operadores"
+   ],
+   "code": "sinParentesis = 2 + 3 * 4\nconParentesis = (2 + 3) * 4\nmostrar sinParentesis\nmostrar conParentesis",
+   "focus": "La multiplicación se resuelve antes que la suma salvo que los paréntesis lo impidan.",
+   "tests": [
+    {
+     "label": "Caso único",
+     "inputs": []
+    }
+   ],
+   "expected": [
+    "14",
+    "20"
+   ],
+   "expectedByTest": [
+    [
+     "14",
+     "20"
+    ]
+   ],
+   "steps": 4
+  },
+  {
+   "id": "ope-02",
+   "module": "operadores",
+   "kind": "predict",
+   "difficulty": "fundamentos",
+   "title": "Residuo y paridad",
+   "statement": "Piensa qué valor lógico se obtiene.",
+   "concepts": [
+    "operadores"
+   ],
+   "code": "numero = 9\nesPar = numero mod 2 == 0\nmostrar esPar",
+   "question": {
+    "prompt": "¿Qué muestra el programa?",
+    "options": [
+     "verdadero",
+     "falso",
+     "1",
+     "0"
+    ],
+    "answer": 1,
+    "explanation": "9 mod 2 es 1, y 1 == 0 es falso. El operador de comparación devuelve un valor lógico, no un número."
+   },
+   "tests": [
+    {
+     "label": "Caso único",
+     "inputs": []
+    }
+   ],
+   "expected": [
+    "falso"
+   ],
+   "expectedByTest": [
+    [
+     "falso"
+    ]
+   ]
+  },
+  {
+   "id": "ope-03",
+   "module": "operadores",
+   "kind": "complete",
+   "difficulty": "aplicacion",
+   "title": "Precio con descuento",
+   "statement": "Completa la expresión para aplicar un 20 % de descuento al precio.",
+   "concepts": [
+    "operadores"
+   ],
+   "code": "precio = 250\ndescuento = precio {{b1}} 0.20\nfinal = precio {{b2}} descuento\nmostrar final",
+   "blanks": [
+    {
+     "id": "b1",
+     "options": [
+      "*",
+      "+",
+      "-",
+      "mod"
+     ],
+     "answer": "*",
+     "explanation": "El 20 % se obtiene multiplicando el precio por 0.20."
+    },
+    {
+     "id": "b2",
+     "options": [
+      "+",
+      "-",
+      "*",
+      "/"
+     ],
+     "answer": "-",
+     "explanation": "Al precio original se le resta el descuento calculado."
+    }
+   ],
+   "hint": "Primero cuánto se descuenta, después cuánto queda.",
+   "tests": [
+    {
+     "label": "Caso único",
+     "inputs": []
+    }
+   ],
+   "solution": "precio = 250\ndescuento = precio * 0.20\nfinal = precio - descuento\nmostrar final",
+   "expected": [
+    "200"
+   ],
+   "expectedByTest": [
+    [
+     "200"
+    ]
+   ]
+  },
+  {
+   "id": "ope-04",
+   "module": "operadores",
+   "kind": "build",
+   "difficulty": "aplicacion",
+   "title": "Precio final con IGV",
+   "statement": "Construye un programa que calcule el precio final de un producto de 80 soles agregando 18 % de IGV y lo muestre.",
+   "concepts": [
+    "operadores"
+   ],
+   "blocks": [
+    {
+     "id": "k1",
+     "text": "precio = 80",
+     "indent": 0
+    },
+    {
+     "id": "k2",
+     "text": "igv = precio * 0.18",
+     "indent": 0
+    },
+    {
+     "id": "k3",
+     "text": "total = precio + igv",
+     "indent": 0
+    },
+    {
+     "id": "k4",
+     "text": "mostrar \"Total:\", total",
+     "indent": 0
+    },
+    {
+     "id": "d1",
+     "text": "total = precio - igv",
+     "indent": 0,
+     "distractor": true
+    },
+    {
+     "id": "d2",
+     "text": "igv = precio * 18",
+     "indent": 0,
+     "distractor": true
+    }
+   ],
+   "order": [
+    "k1",
+    "k2",
+    "k3",
+    "k4"
+   ],
+   "hint": "18 % se expresa como 0.18, no como 18.",
+   "tests": [
+    {
+     "label": "Caso único",
+     "inputs": []
+    }
+   ],
+   "solution": "precio = 80\nigv = precio * 0.18\ntotal = precio + igv\nmostrar \"Total:\", total",
+   "expected": [
+    "Total: 94.4"
+   ],
+   "expectedByTest": [
+    [
+     "Total: 94.4"
+    ]
+   ]
+  },
+  {
+   "id": "con-01",
+   "module": "condicionales",
+   "kind": "trace",
+   "difficulty": "fundamentos",
+   "title": "Una decisión, dos caminos",
+   "statement": "Ejecuta paso a paso y observa el paso donde se evalúa la condición: solo una de las dos ramas se ejecuta.",
+   "concepts": [
+    "condicionales"
+   ],
+   "code": "edad = 20\nsi edad >= 18 entonces\n    mostrar \"Mayor de edad\"\nsino\n    mostrar \"Menor de edad\"\nfin_si",
+   "focus": "La condición se evalúa una sola vez y decide el camino.",
+   "tests": [
+    {
+     "label": "Caso único",
+     "inputs": []
+    }
+   ],
+   "expected": [
+    "Mayor de edad"
+   ],
+   "expectedByTest": [
+    [
+     "Mayor de edad"
+    ]
+   ],
+   "steps": 3
+  },
+  {
+   "id": "con-02",
+   "module": "condicionales",
+   "kind": "complete",
+   "difficulty": "fundamentos",
+   "title": "Completa la condición de aprobación",
+   "statement": "En esta universidad se aprueba con 11. Completa la condición para que una nota de 11 sea aprobada.",
+   "concepts": [
+    "condicionales",
+    "operadores"
+   ],
+   "code": "leer nota\nsi nota {{b1}} 11 entonces\n    mostrar \"Aprobado\"\nsino\n    mostrar \"Desaprobado\"\nfin_si",
+   "tests": [
+    {
+     "label": "nota = 11",
+     "inputs": [
+      11
+     ]
+    },
+    {
+     "label": "nota = 10",
+     "inputs": [
+      10
+     ]
+    },
+    {
+     "label": "nota = 16",
+     "inputs": [
+      16
+     ]
+    }
+   ],
+   "blanks": [
+    {
+     "id": "b1",
+     "options": [
+      ">=",
+      ">",
+      "==",
+      "<"
+     ],
+     "answer": ">=",
+     "explanation": "Con > la nota exacta de 11 quedaría desaprobada. >= incluye el valor límite."
+    }
+   ],
+   "hint": "Piensa en el caso exacto del límite: nota = 11.",
+   "solution": "leer nota\nsi nota >= 11 entonces\n    mostrar \"Aprobado\"\nsino\n    mostrar \"Desaprobado\"\nfin_si",
+   "expected": [
+    "Aprobado"
+   ],
+   "expectedByTest": [
+    [
+     "Aprobado"
+    ],
+    [
+     "Desaprobado"
+    ],
+    [
+     "Aprobado"
+    ]
+   ]
+  },
+  {
+   "id": "con-03",
+   "module": "condicionales",
+   "kind": "repair",
+   "difficulty": "aplicacion",
+   "title": "Positivo, negativo o cero",
+   "statement": "El programa debe clasificar el número 0 como \"Cero\", pero muestra otra cosa. Ejecútalo, localiza la condición equivocada y corrígela.",
+   "concepts": [
+    "condicionales",
+    "depuracion"
+   ],
+   "code": "numero = 0\nsi numero >= 0 entonces\n    mostrar \"Positivo\"\nsino si numero < 0 entonces\n    mostrar \"Negativo\"\nsino\n    mostrar \"Cero\"\nfin_si",
+   "solution": "numero = 0\nsi numero > 0 entonces\n    mostrar \"Positivo\"\nsino si numero < 0 entonces\n    mostrar \"Negativo\"\nsino\n    mostrar \"Cero\"\nfin_si",
+   "hint": "¿Qué rama atrapa al 0 con la condición actual?",
+   "focus": "Un >= donde correspondía > cambia por completo la clasificación del valor límite.",
+   "tests": [
+    {
+     "label": "Caso único",
+     "inputs": []
+    }
+   ],
+   "expected": [
+    "Cero"
+   ],
+   "expectedByTest": [
+    [
+     "Cero"
+    ]
+   ]
+  },
+  {
+   "id": "con-04",
+   "module": "condicionales",
+   "kind": "build",
+   "difficulty": "aplicacion",
+   "title": "Validación de acceso",
+   "statement": "El acceso se concede solo si el usuario es \"ana\" y la clave es \"1234\". Con los datos dados debe mostrar \"Acceso denegado\".",
+   "concepts": [
+    "condicionales",
+    "operadores"
+   ],
+   "blocks": [
+    {
+     "id": "k1",
+     "text": "usuario = \"ana\"",
+     "indent": 0
+    },
+    {
+     "id": "k2",
+     "text": "clave = \"9999\"",
+     "indent": 0
+    },
+    {
+     "id": "k3",
+     "text": "si usuario == \"ana\" y clave == \"1234\" entonces",
+     "indent": 0
+    },
+    {
+     "id": "k4",
+     "text": "mostrar \"Acceso concedido\"",
+     "indent": 1
+    },
+    {
+     "id": "k5",
+     "text": "sino",
+     "indent": 0
+    },
+    {
+     "id": "k6",
+     "text": "mostrar \"Acceso denegado\"",
+     "indent": 1
+    },
+    {
+     "id": "k7",
+     "text": "fin_si",
+     "indent": 0
+    },
+    {
+     "id": "d1",
+     "text": "si usuario == \"ana\" o clave == \"1234\" entonces",
+     "indent": 0,
+     "distractor": true
+    }
+   ],
+   "order": [
+    "k1",
+    "k2",
+    "k3",
+    "k4",
+    "k5",
+    "k6",
+    "k7"
+   ],
+   "hint": "Con o bastaría con acertar el usuario: eso no es una validación.",
+   "tests": [
+    {
+     "label": "Caso único",
+     "inputs": []
+    }
+   ],
+   "solution": "usuario = \"ana\"\nclave = \"9999\"\nsi usuario == \"ana\" y clave == \"1234\" entonces\n    mostrar \"Acceso concedido\"\nsino\n    mostrar \"Acceso denegado\"\nfin_si",
+   "expected": [
+    "Acceso denegado"
+   ],
+   "expectedByTest": [
+    [
+     "Acceso denegado"
+    ]
+   ]
+  },
+  {
+   "id": "cic-01",
+   "module": "ciclos",
+   "kind": "trace",
+   "difficulty": "fundamentos",
+   "title": "Contador paso a paso",
+   "statement": "Observa cómo la condición se evalúa antes de cada repetición y qué ocurre en la última evaluación.",
+   "concepts": [
+    "ciclos"
+   ],
+   "code": "contador = 1\nmientras contador <= 3\n    mostrar contador\n    contador = contador + 1\nfin_mientras\nmostrar \"Fin\"",
+   "focus": "El ciclo termina cuando la condición se evalúa como falsa, no cuando se acaban las instrucciones.",
+   "tests": [
+    {
+     "label": "Caso único",
+     "inputs": []
+    }
+   ],
+   "expected": [
+    "1",
+    "2",
+    "3",
+    "Fin"
+   ],
+   "expectedByTest": [
+    [
+     "1",
+     "2",
+     "3",
+     "Fin"
+    ]
+   ],
+   "steps": 12
+  },
+  {
+   "id": "cic-02",
+   "module": "ciclos",
+   "kind": "repair",
+   "difficulty": "fundamentos",
+   "title": "El ciclo que no termina",
+   "statement": "Ejecuta el programa: el motor detendrá la ejecución por superar el límite de pasos. Corrige el programa para que muestre los números del 1 al 5.",
+   "concepts": [
+    "ciclos",
+    "depuracion"
+   ],
+   "code": "contador = 1\nmientras contador <= 5\n    mostrar contador\nfin_mientras",
+   "solution": "contador = 1\nmientras contador <= 5\n    mostrar contador\n    contador = contador + 1\nfin_mientras",
+   "hint": "¿Qué instrucción dentro del ciclo acerca la condición a falso?",
+   "focus": "Todo ciclo mientras necesita que algo modifique la variable de la condición.",
+   "tests": [
+    {
+     "label": "Caso único",
+     "inputs": []
+    }
+   ],
+   "expected": [
+    "1",
+    "2",
+    "3",
+    "4",
+    "5"
+   ],
+   "expectedByTest": [
+    [
+     "1",
+     "2",
+     "3",
+     "4",
+     "5"
+    ]
+   ]
+  },
+  {
+   "id": "cic-03",
+   "module": "ciclos",
+   "kind": "predict",
+   "difficulty": "aplicacion",
+   "title": "Cuántas iteraciones",
+   "statement": "Cuenta mentalmente las repeticiones antes de ejecutar.",
+   "concepts": [
+    "ciclos"
+   ],
+   "code": "total = 0\npara i = 0 hasta 10 paso 3\n    total = total + i\nfin_para\nmostrar total",
+   "question": {
+    "prompt": "¿Qué valor muestra total?",
+    "options": [
+     "18",
+     "15",
+     "21",
+     "10"
+    ],
+    "answer": 0,
+    "explanation": "i toma los valores 0, 3, 6 y 9 (cuatro iteraciones): 0+3+6+9 = 18. Con 12 se pasaría del límite."
+   },
+   "tests": [
+    {
+     "label": "Caso único",
+     "inputs": []
+    }
+   ],
+   "expected": [
+    "18"
+   ],
+   "expectedByTest": [
+    [
+     "18"
+    ]
+   ]
+  },
+  {
+   "id": "cic-04",
+   "module": "ciclos",
+   "kind": "build",
+   "difficulty": "aplicacion",
+   "title": "Suma de los números pares",
+   "statement": "Construye un programa que sume los números pares del 1 al 10 y muestre el resultado.",
+   "concepts": [
+    "ciclos",
+    "condicionales",
+    "operadores"
+   ],
+   "blocks": [
+    {
+     "id": "k1",
+     "text": "suma = 0",
+     "indent": 0
+    },
+    {
+     "id": "k2",
+     "text": "para i = 1 hasta 10",
+     "indent": 0
+    },
+    {
+     "id": "k3",
+     "text": "si i mod 2 == 0 entonces",
+     "indent": 1
+    },
+    {
+     "id": "k4",
+     "text": "suma = suma + i",
+     "indent": 2
+    },
+    {
+     "id": "k5",
+     "text": "fin_si",
+     "indent": 1
+    },
+    {
+     "id": "k6",
+     "text": "fin_para",
+     "indent": 0
+    },
+    {
+     "id": "k7",
+     "text": "mostrar \"Suma de pares:\", suma",
+     "indent": 0
+    },
+    {
+     "id": "d1",
+     "text": "si i mod 2 == 1 entonces",
+     "indent": 1,
+     "distractor": true
+    },
+    {
+     "id": "d2",
+     "text": "suma = i",
+     "indent": 2,
+     "distractor": true
+    }
+   ],
+   "order": [
+    "k1",
+    "k2",
+    "k3",
+    "k4",
+    "k5",
+    "k6",
+    "k7"
+   ],
+   "hint": "El acumulador se inicializa antes del ciclo, nunca dentro.",
+   "tests": [
+    {
+     "label": "Caso único",
+     "inputs": []
+    }
+   ],
+   "solution": "suma = 0\npara i = 1 hasta 10\n    si i mod 2 == 0 entonces\n        suma = suma + i\n    fin_si\nfin_para\nmostrar \"Suma de pares:\", suma",
+   "expected": [
+    "Suma de pares: 30"
+   ],
+   "expectedByTest": [
+    [
+     "Suma de pares: 30"
+    ]
+   ]
+  },
+  {
+   "id": "fun-01",
+   "module": "funciones",
+   "kind": "trace",
+   "difficulty": "fundamentos",
+   "title": "Entrar y salir de una función",
+   "statement": "Ejecuta paso a paso y observa el ámbito: mientras la función trabaja aparecen sus propias variables.",
+   "concepts": [
+    "funciones"
+   ],
+   "code": "funcion area(base, altura)\n    resultado = base * altura / 2\n    retornar resultado\nfin_funcion\n\nmostrar area(6, 4)",
+   "focus": "Los parámetros reciben una copia de los valores enviados por quien llama.",
+   "tests": [
+    {
+     "label": "Caso único",
+     "inputs": []
+    }
+   ],
+   "expected": [
+    "12"
+   ],
+   "expectedByTest": [
+    [
+     "12"
+    ]
+   ],
+   "steps": 5
+  },
+  {
+   "id": "fun-02",
+   "module": "funciones",
+   "kind": "complete",
+   "difficulty": "aplicacion",
+   "title": "Completa la función",
+   "statement": "La función debe devolver el mayor de dos números. Completa las piezas faltantes.",
+   "concepts": [
+    "funciones",
+    "condicionales"
+   ],
+   "code": "funcion mayor(a, b)\n    si a {{b1}} b entonces\n        {{b2}} a\n    fin_si\n    retornar b\nfin_funcion\n\nleer x\nleer y\nmostrar mayor(x, y)",
+   "tests": [
+    {
+     "label": "x = 4, y = 9",
+     "inputs": [
+      4,
+      9
+     ]
+    },
+    {
+     "label": "x = 9, y = 4",
+     "inputs": [
+      9,
+      4
+     ]
+    },
+    {
+     "label": "x = 7, y = 7",
+     "inputs": [
+      7,
+      7
+     ]
+    }
+   ],
+   "blanks": [
+    {
+     "id": "b1",
+     "options": [
+      ">",
+      "<",
+      "==",
+      "mod"
+     ],
+     "answer": ">",
+     "explanation": "Solo devolvemos a cuando a es mayor que b."
+    },
+    {
+     "id": "b2",
+     "options": [
+      "retornar",
+      "mostrar",
+      "leer",
+      "arreglo"
+     ],
+     "answer": "retornar",
+     "explanation": "mostrar imprimiría el valor pero la función no devolvería nada a quien la llamó."
+    }
+   ],
+   "hint": "Devolver no es lo mismo que mostrar.",
+   "solution": "funcion mayor(a, b)\n    si a > b entonces\n        retornar a\n    fin_si\n    retornar b\nfin_funcion\n\nleer x\nleer y\nmostrar mayor(x, y)",
+   "expected": [
+    "9"
+   ],
+   "expectedByTest": [
+    [
+     "9"
+    ],
+    [
+     "9"
+    ],
+    [
+     "7"
+    ]
+   ]
+  },
+  {
+   "id": "fun-03",
+   "module": "funciones",
+   "kind": "repair",
+   "difficulty": "aplicacion",
+   "title": "La función que no devuelve",
+   "statement": "Este programa debería mostrar 20, pero muestra otra cosa. Ejecútalo, revisa qué devuelve la función y corrígelo.",
+   "concepts": [
+    "funciones",
+    "depuracion"
+   ],
+   "code": "funcion doble(n)\n    resultado = n * 2\nfin_funcion\n\nmostrar doble(10)",
+   "solution": "funcion doble(n)\n    resultado = n * 2\n    retornar resultado\nfin_funcion\n\nmostrar doble(10)",
+   "hint": "Calcular un valor dentro de la función no es entregarlo.",
+   "focus": "Sin retornar, la función termina sin valor y quien la llama no recibe nada.",
+   "tests": [
+    {
+     "label": "Caso único",
+     "inputs": []
+    }
+   ],
+   "expected": [
+    "20"
+   ],
+   "expectedByTest": [
+    [
+     "20"
+    ]
+   ]
+  },
+  {
+   "id": "fun-04",
+   "module": "funciones",
+   "kind": "build",
+   "difficulty": "aplicacion",
+   "title": "Función promedio",
+   "statement": "Construye una función que reciba dos notas, devuelva su promedio, y úsala para mostrar el promedio de 12 y 16.",
+   "concepts": [
+    "funciones"
+   ],
+   "blocks": [
+    {
+     "id": "k1",
+     "text": "funcion promedio(n1, n2)",
+     "indent": 0
+    },
+    {
+     "id": "k2",
+     "text": "retornar (n1 + n2) / 2",
+     "indent": 1
+    },
+    {
+     "id": "k3",
+     "text": "fin_funcion",
+     "indent": 0
+    },
+    {
+     "id": "k4",
+     "text": "mostrar \"Promedio:\", promedio(12, 16)",
+     "indent": 0
+    },
+    {
+     "id": "d1",
+     "text": "retornar n1 + n2 / 2",
+     "indent": 1,
+     "distractor": true
+    },
+    {
+     "id": "d2",
+     "text": "mostrar (n1 + n2) / 2",
+     "indent": 1,
+     "distractor": true
+    }
+   ],
+   "order": [
+    "k1",
+    "k2",
+    "k3",
+    "k4"
+   ],
+   "hint": "Sin paréntesis, la división se aplicaría solo a n2.",
+   "tests": [
+    {
+     "label": "Caso único",
+     "inputs": []
+    }
+   ],
+   "solution": "funcion promedio(n1, n2)\n    retornar (n1 + n2) / 2\nfin_funcion\nmostrar \"Promedio:\", promedio(12, 16)",
+   "expected": [
+    "Promedio: 14"
+   ],
+   "expectedByTest": [
+    [
+     "Promedio: 14"
+    ]
+   ]
+  },
+  {
+   "id": "arr-01",
+   "module": "arreglos",
+   "kind": "trace",
+   "difficulty": "fundamentos",
+   "title": "Recorrer un arreglo",
+   "statement": "Observa cómo el índice i avanza y cómo cambia el acumulador en cada vuelta.",
+   "concepts": [
+    "arreglos",
+    "ciclos"
+   ],
+   "code": "notas = [12, 15, 8, 18]\ntotal = 0\npara i = 0 hasta longitud(notas) - 1\n    total = total + notas[i]\nfin_para\nmostrar \"Total:\", total",
+   "focus": "El último índice válido es longitud - 1 porque las posiciones empiezan en 0.",
+   "tests": [
+    {
+     "label": "Caso único",
+     "inputs": []
+    }
+   ],
+   "expected": [
+    "Total: 53"
+   ],
+   "expectedByTest": [
+    [
+     "Total: 53"
+    ]
+   ],
+   "steps": 17
+  },
+  {
+   "id": "arr-02",
+   "module": "arreglos",
+   "kind": "predict",
+   "difficulty": "aplicacion",
+   "title": "Contar sobre el arreglo",
+   "statement": "Predice cuántos elementos cumplen la condición.",
+   "concepts": [
+    "arreglos",
+    "condicionales"
+   ],
+   "code": "temperaturas = [18, 22, 30, 25, 19]\ncalurosos = 0\npara i = 0 hasta longitud(temperaturas) - 1\n    si temperaturas[i] > 22 entonces\n        calurosos = calurosos + 1\n    fin_si\nfin_para\nmostrar calurosos",
+   "question": {
+    "prompt": "¿Qué valor muestra calurosos?",
+    "options": [
+     "1",
+     "2",
+     "3",
+     "4"
+    ],
+    "answer": 1,
+    "explanation": "Solo 30 y 25 son mayores que 22. El 22 no cuenta porque la condición usa > y no >=."
+   },
+   "tests": [
+    {
+     "label": "Caso único",
+     "inputs": []
+    }
+   ],
+   "expected": [
+    "2"
+   ],
+   "expectedByTest": [
+    [
+     "2"
+    ]
+   ]
+  },
+  {
+   "id": "arr-03",
+   "module": "arreglos",
+   "kind": "repair",
+   "difficulty": "aplicacion",
+   "title": "Índice fuera de rango",
+   "statement": "El recorrido falla con un error de índice. Ejecútalo para ver en qué paso ocurre y corrige el límite.",
+   "concepts": [
+    "arreglos",
+    "depuracion"
+   ],
+   "code": "datos = [4, 9, 2]\npara i = 0 hasta longitud(datos)\n    mostrar datos[i]\nfin_para",
+   "solution": "datos = [4, 9, 2]\npara i = 0 hasta longitud(datos) - 1\n    mostrar datos[i]\nfin_para",
+   "hint": "longitud(datos) es 3, pero la última posición válida no es 3.",
+   "focus": "Un arreglo de n elementos usa los índices 0 a n - 1.",
+   "tests": [
+    {
+     "label": "Caso único",
+     "inputs": []
+    }
+   ],
+   "expected": [
+    "4",
+    "9",
+    "2"
+   ],
+   "expectedByTest": [
+    [
+     "4",
+     "9",
+     "2"
+    ]
+   ]
+  },
+  {
+   "id": "arr-04",
+   "module": "arreglos",
+   "kind": "build",
+   "difficulty": "desafio",
+   "title": "Buscar un dato",
+   "statement": "Construye una búsqueda que indique si el valor 7 está en el arreglo. Debe mostrar \"Encontrado: verdadero\".",
+   "concepts": [
+    "arreglos",
+    "ciclos",
+    "condicionales"
+   ],
+   "blocks": [
+    {
+     "id": "k1",
+     "text": "datos = [3, 7, 11]",
+     "indent": 0
+    },
+    {
+     "id": "k2",
+     "text": "buscado = 7",
+     "indent": 0
+    },
+    {
+     "id": "k3",
+     "text": "encontrado = falso",
+     "indent": 0
+    },
+    {
+     "id": "k4",
+     "text": "para i = 0 hasta longitud(datos) - 1",
+     "indent": 0
+    },
+    {
+     "id": "k5",
+     "text": "si datos[i] == buscado entonces",
+     "indent": 1
+    },
+    {
+     "id": "k6",
+     "text": "encontrado = verdadero",
+     "indent": 2
+    },
+    {
+     "id": "k7",
+     "text": "fin_si",
+     "indent": 1
+    },
+    {
+     "id": "k8",
+     "text": "fin_para",
+     "indent": 0
+    },
+    {
+     "id": "k9",
+     "text": "mostrar \"Encontrado:\", encontrado",
+     "indent": 0
+    },
+    {
+     "id": "d1",
+     "text": "encontrado = verdadero",
+     "indent": 0,
+     "distractor": true
+    },
+    {
+     "id": "d2",
+     "text": "si datos[i] != buscado entonces",
+     "indent": 1,
+     "distractor": true
+    }
+   ],
+   "order": [
+    "k1",
+    "k2",
+    "k3",
+    "k4",
+    "k5",
+    "k6",
+    "k7",
+    "k8",
+    "k9"
+   ],
+   "hint": "La variable lógica debe empezar en falso antes del ciclo.",
+   "tests": [
+    {
+     "label": "Caso único",
+     "inputs": []
+    }
+   ],
+   "solution": "datos = [3, 7, 11]\nbuscado = 7\nencontrado = falso\npara i = 0 hasta longitud(datos) - 1\n    si datos[i] == buscado entonces\n        encontrado = verdadero\n    fin_si\nfin_para\nmostrar \"Encontrado:\", encontrado",
+   "expected": [
+    "Encontrado: verdadero"
+   ],
+   "expectedByTest": [
+    [
+     "Encontrado: verdadero"
+    ]
+   ]
+  },
+  {
+   "id": "obj-01",
+   "module": "objetos",
+   "kind": "trace",
+   "difficulty": "fundamentos",
+   "title": "El estado de un objeto",
+   "statement": "Observa en el inspector cómo el objeto conserva su identidad mientras uno de sus atributos cambia.",
+   "concepts": [
+    "objetos"
+   ],
+   "code": "producto = objeto(nombre: \"Teclado\", precio: 90, stock: 5)\nproducto.stock = producto.stock - 2\nmostrar producto.nombre, producto.stock",
+   "focus": "Cambiar un atributo modifica el estado del objeto, no crea otro objeto.",
+   "tests": [
+    {
+     "label": "Caso único",
+     "inputs": []
+    }
+   ],
+   "expected": [
+    "Teclado 3"
+   ],
+   "expectedByTest": [
+    [
+     "Teclado 3"
+    ]
+   ],
+   "steps": 3
+  },
+  {
+   "id": "obj-02",
+   "module": "objetos",
+   "kind": "complete",
+   "difficulty": "aplicacion",
+   "title": "Actualizar el estado",
+   "statement": "Completa el programa para registrar la venta de 3 unidades. Debe mostrar 7.",
+   "concepts": [
+    "objetos"
+   ],
+   "code": "item = objeto(nombre: \"Mouse\", stock: 10)\nitem.{{b1}} = item.stock {{b2}} 3\nmostrar item.stock",
+   "blanks": [
+    {
+     "id": "b1",
+     "options": [
+      "stock",
+      "nombre",
+      "item",
+      "precio"
+     ],
+     "answer": "stock",
+     "explanation": "La venta afecta al atributo stock, no al nombre."
+    },
+    {
+     "id": "b2",
+     "options": [
+      "-",
+      "+",
+      "*",
+      "/"
+     ],
+     "answer": "-",
+     "explanation": "Vender reduce las unidades disponibles."
+    }
+   ],
+   "hint": "Solo cambia el atributo que representa las unidades disponibles.",
+   "tests": [
+    {
+     "label": "Caso único",
+     "inputs": []
+    }
+   ],
+   "solution": "item = objeto(nombre: \"Mouse\", stock: 10)\nitem.stock = item.stock - 3\nmostrar item.stock",
+   "expected": [
+    "7"
+   ],
+   "expectedByTest": [
+    [
+     "7"
+    ]
+   ]
+  },
+  {
+   "id": "obj-03",
+   "module": "objetos",
+   "kind": "build",
+   "difficulty": "desafio",
+   "title": "Una operación sobre el objeto",
+   "statement": "Construye una función vender que descuente unidades del objeto y devuelva el stock restante. Debe mostrar \"Quedan: 7\".",
+   "concepts": [
+    "objetos",
+    "funciones"
+   ],
+   "blocks": [
+    {
+     "id": "k1",
+     "text": "funcion vender(item, cantidad)",
+     "indent": 0
+    },
+    {
+     "id": "k2",
+     "text": "item.stock = item.stock - cantidad",
+     "indent": 1
+    },
+    {
+     "id": "k3",
+     "text": "retornar item.stock",
+     "indent": 1
+    },
+    {
+     "id": "k4",
+     "text": "fin_funcion",
+     "indent": 0
+    },
+    {
+     "id": "k5",
+     "text": "p = objeto(nombre: \"Mouse\", stock: 10)",
+     "indent": 0
+    },
+    {
+     "id": "k6",
+     "text": "mostrar \"Quedan:\", vender(p, 3)",
+     "indent": 0
+    },
+    {
+     "id": "d1",
+     "text": "item.stock = cantidad",
+     "indent": 1,
+     "distractor": true
+    }
+   ],
+   "order": [
+    "k1",
+    "k2",
+    "k3",
+    "k4",
+    "k5",
+    "k6"
+   ],
+   "hint": "La función recibe el objeto como parámetro y trabaja sobre su atributo.",
+   "tests": [
+    {
+     "label": "Caso único",
+     "inputs": []
+    }
+   ],
+   "solution": "funcion vender(item, cantidad)\n    item.stock = item.stock - cantidad\n    retornar item.stock\nfin_funcion\np = objeto(nombre: \"Mouse\", stock: 10)\nmostrar \"Quedan:\", vender(p, 3)",
+   "expected": [
+    "Quedan: 7"
+   ],
+   "expectedByTest": [
+    [
+     "Quedan: 7"
+    ]
+   ]
+  },
+  {
+   "id": "obj-04",
+   "module": "objetos",
+   "kind": "predict",
+   "difficulty": "aplicacion",
+   "title": "Estado después de dos operaciones",
+   "statement": "Predice el estado final del objeto.",
+   "concepts": [
+    "objetos"
+   ],
+   "code": "cuenta = objeto(titular: \"Luis\", saldo: 500)\ncuenta.saldo = cuenta.saldo - 200\ncuenta.saldo = cuenta.saldo + 50\nmostrar cuenta.titular, cuenta.saldo",
+   "question": {
+    "prompt": "¿Qué muestra el programa?",
+    "options": [
+     "Luis 500",
+     "Luis 350",
+     "Luis 250",
+     "Luis 750"
+    ],
+    "answer": 1,
+    "explanation": "500 - 200 = 300 y 300 + 50 = 350. Cada instrucción parte del estado dejado por la anterior."
+   },
+   "tests": [
+    {
+     "label": "Caso único",
+     "inputs": []
+    }
+   ],
+   "expected": [
+    "Luis 350"
+   ],
+   "expectedByTest": [
+    [
+     "Luis 350"
+    ]
+   ]
+  },
+  {
+   "id": "ret-01",
+   "module": "retos",
+   "kind": "repair",
+   "difficulty": "aplicacion",
+   "title": "Promedio de temperaturas",
+   "statement": "El promedio sale mal porque falta inicializar una variable. Ejecuta, revisa la memoria y corrige. Debe mostrar \"Promedio: 21\".",
+   "concepts": [
+    "arreglos",
+    "ciclos",
+    "depuracion"
+   ],
+   "code": "temperaturas = [18, 22, 24, 20]\npara i = 0 hasta longitud(temperaturas) - 1\n    total = total + temperaturas[i]\nfin_para\nmostrar \"Promedio:\", total / longitud(temperaturas)",
+   "solution": "temperaturas = [18, 22, 24, 20]\ntotal = 0\npara i = 0 hasta longitud(temperaturas) - 1\n    total = total + temperaturas[i]\nfin_para\nmostrar \"Promedio:\", total / longitud(temperaturas)",
+   "hint": "¿Qué valor tiene total la primera vez que se usa?",
+   "focus": "Un acumulador debe existir y valer 0 antes de entrar al ciclo.",
+   "tests": [
+    {
+     "label": "Caso único",
+     "inputs": []
+    }
+   ],
+   "expected": [
+    "Promedio: 21"
+   ],
+   "expectedByTest": [
+    [
+     "Promedio: 21"
+    ]
+   ]
+  },
+  {
+   "id": "ret-02",
+   "module": "retos",
+   "kind": "repair",
+   "difficulty": "desafio",
+   "title": "El máximo mal inicializado",
+   "statement": "El programa debe mostrar el mayor de los valores, pero devuelve 0. Corrígelo para que muestre -3.",
+   "concepts": [
+    "arreglos",
+    "condicionales",
+    "depuracion"
+   ],
+   "code": "datos = [-10, -3, -7]\nmayor = 0\npara i = 0 hasta longitud(datos) - 1\n    si datos[i] > mayor entonces\n        mayor = datos[i]\n    fin_si\nfin_para\nmostrar mayor",
+   "solution": "datos = [-10, -3, -7]\nmayor = datos[0]\npara i = 0 hasta longitud(datos) - 1\n    si datos[i] > mayor entonces\n        mayor = datos[i]\n    fin_si\nfin_para\nmostrar mayor",
+   "hint": "Ningún dato supera a 0, así que el máximo nunca se actualiza.",
+   "focus": "El máximo se inicializa con el primer elemento, no con 0.",
+   "tests": [
+    {
+     "label": "Caso único",
+     "inputs": []
+    }
+   ],
+   "expected": [
+    "-3"
+   ],
+   "expectedByTest": [
+    [
+     "-3"
+    ]
+   ]
+  },
+  {
+   "id": "ret-03",
+   "module": "retos",
+   "kind": "predict",
+   "difficulty": "desafio",
+   "title": "Dos ciclos y un contador",
+   "statement": "Predice el resultado sin ejecutar.",
+   "concepts": [
+    "ciclos",
+    "operadores"
+   ],
+   "code": "pasos = 0\npara i = 1 hasta 3\n    para j = 1 hasta 2\n        pasos = pasos + 1\n    fin_para\nfin_para\nmostrar pasos",
+   "question": {
+    "prompt": "¿Qué valor muestra pasos?",
+    "options": [
+     "5",
+     "6",
+     "3",
+     "9"
+    ],
+    "answer": 1,
+    "explanation": "El ciclo interno se ejecuta completo por cada vuelta del externo: 3 x 2 = 6."
+   },
+   "tests": [
+    {
+     "label": "Caso único",
+     "inputs": []
+    }
+   ],
+   "expected": [
+    "6"
+   ],
+   "expectedByTest": [
+    [
+     "6"
+    ]
+   ]
+  },
+  {
+   "id": "ret-04",
+   "module": "retos",
+   "kind": "complete",
+   "difficulty": "aplicacion",
+   "title": "Alerta de inventario",
+   "statement": "El sistema debe avisar cuando el stock sea menor a 5 unidades. Con stock = 5 no debe alertar.",
+   "concepts": [
+    "condicionales"
+   ],
+   "code": "leer stock\nsi stock {{b1}} 5 entonces\n    mostrar \"Stock bajo\"\nsino\n    mostrar \"Stock suficiente\"\nfin_si",
+   "tests": [
+    {
+     "label": "stock = 5",
+     "inputs": [
+      5
+     ]
+    },
+    {
+     "label": "stock = 3",
+     "inputs": [
+      3
+     ]
+    },
+    {
+     "label": "stock = 9",
+     "inputs": [
+      9
+     ]
+    }
+   ],
+   "blanks": [
+    {
+     "id": "b1",
+     "options": [
+      "<",
+      "<=",
+      ">",
+      "=="
+     ],
+     "answer": "<",
+     "explanation": "Menor a 5 excluye al propio 5; con <= el límite quedaría dentro de la alerta."
+    }
+   ],
+   "hint": "Lee el enunciado con cuidado: \"menor a 5\".",
+   "solution": "leer stock\nsi stock < 5 entonces\n    mostrar \"Stock bajo\"\nsino\n    mostrar \"Stock suficiente\"\nfin_si",
+   "expected": [
+    "Stock suficiente"
+   ],
+   "expectedByTest": [
+    [
+     "Stock suficiente"
+    ],
+    [
+     "Stock bajo"
+    ],
+    [
+     "Stock suficiente"
+    ]
+   ]
+  },
+  {
+   "id": "ret-05",
+   "module": "retos",
+   "kind": "build",
+   "difficulty": "desafio",
+   "title": "Clasificar notas",
+   "statement": "Recorre las notas [14, 9, 11, 6] y cuenta cuántas aprueban (11 o más). Debe mostrar \"Aprobados: 2\".",
+   "concepts": [
+    "arreglos",
+    "ciclos",
+    "condicionales"
+   ],
+   "blocks": [
+    {
+     "id": "k1",
+     "text": "notas = [14, 9, 11, 6]",
+     "indent": 0
+    },
+    {
+     "id": "k2",
+     "text": "aprobados = 0",
+     "indent": 0
+    },
+    {
+     "id": "k3",
+     "text": "para i = 0 hasta longitud(notas) - 1",
+     "indent": 0
+    },
+    {
+     "id": "k4",
+     "text": "si notas[i] >= 11 entonces",
+     "indent": 1
+    },
+    {
+     "id": "k5",
+     "text": "aprobados = aprobados + 1",
+     "indent": 2
+    },
+    {
+     "id": "k6",
+     "text": "fin_si",
+     "indent": 1
+    },
+    {
+     "id": "k7",
+     "text": "fin_para",
+     "indent": 0
+    },
+    {
+     "id": "k8",
+     "text": "mostrar \"Aprobados:\", aprobados",
+     "indent": 0
+    },
+    {
+     "id": "d1",
+     "text": "si notas[i] > 11 entonces",
+     "indent": 1,
+     "distractor": true
+    },
+    {
+     "id": "d2",
+     "text": "aprobados = 0",
+     "indent": 2,
+     "distractor": true
+    }
+   ],
+   "order": [
+    "k1",
+    "k2",
+    "k3",
+    "k4",
+    "k5",
+    "k6",
+    "k7",
+    "k8"
+   ],
+   "hint": "Con > 11 la nota exacta de 11 quedaría fuera.",
+   "tests": [
+    {
+     "label": "Caso único",
+     "inputs": []
+    }
+   ],
+   "solution": "notas = [14, 9, 11, 6]\naprobados = 0\npara i = 0 hasta longitud(notas) - 1\n    si notas[i] >= 11 entonces\n        aprobados = aprobados + 1\n    fin_si\nfin_para\nmostrar \"Aprobados:\", aprobados",
+   "expected": [
+    "Aprobados: 2"
+   ],
+   "expectedByTest": [
+    [
+     "Aprobados: 2"
+    ]
+   ]
+  },
+  {
+   "id": "ret-06",
+   "module": "retos",
+   "kind": "repair",
+   "difficulty": "desafio",
+   "title": "Búsqueda con respuesta invertida",
+   "statement": "La búsqueda informa \"No está\" aunque el valor sí se encuentra. Corrige la lógica para que muestre \"Está en el arreglo\".",
+   "concepts": [
+    "arreglos",
+    "condicionales",
+    "depuracion"
+   ],
+   "code": "datos = [5, 8, 13]\nbuscado = 8\nencontrado = verdadero\npara i = 0 hasta longitud(datos) - 1\n    si datos[i] == buscado entonces\n        encontrado = falso\n    fin_si\nfin_para\nsi encontrado entonces\n    mostrar \"Está en el arreglo\"\nsino\n    mostrar \"No está\"\nfin_si",
+   "solution": "datos = [5, 8, 13]\nbuscado = 8\nencontrado = falso\npara i = 0 hasta longitud(datos) - 1\n    si datos[i] == buscado entonces\n        encontrado = verdadero\n    fin_si\nfin_para\nsi encontrado entonces\n    mostrar \"Está en el arreglo\"\nsino\n    mostrar \"No está\"\nfin_si",
+   "hint": "Revisa el valor inicial de encontrado y lo que ocurre cuando hay coincidencia.",
+   "focus": "Una bandera lógica empieza en el estado contrario al que quieres detectar.",
+   "tests": [
+    {
+     "label": "Caso único",
+     "inputs": []
+    }
+   ],
+   "expected": [
+    "Está en el arreglo"
+   ],
+   "expectedByTest": [
+    [
+     "Está en el arreglo"
+    ]
+   ]
+  },
+  {
+   "id": "ret-07",
+   "module": "retos",
+   "kind": "complete",
+   "difficulty": "desafio",
+   "title": "Descuento por compra",
+   "statement": "Se aplica descuento solo si la compra supera 100 soles y el cliente es frecuente. Con estos datos debe mostrar \"Sin descuento\".",
+   "concepts": [
+    "condicionales",
+    "operadores"
+   ],
+   "code": "monto = 150\nfrecuente = falso\nsi monto > 100 {{b1}} frecuente entonces\n    mostrar \"Con descuento\"\nsino\n    mostrar \"Sin descuento\"\nfin_si",
+   "blanks": [
+    {
+     "id": "b1",
+     "options": [
+      "y",
+      "o",
+      "no",
+      "mod"
+     ],
+     "answer": "y",
+     "explanation": "Con o bastaría una de las dos condiciones y el cliente no frecuente recibiría descuento."
+    }
+   ],
+   "hint": "Se piden las dos condiciones a la vez.",
+   "tests": [
+    {
+     "label": "Caso único",
+     "inputs": []
+    }
+   ],
+   "solution": "monto = 150\nfrecuente = falso\nsi monto > 100 y frecuente entonces\n    mostrar \"Con descuento\"\nsino\n    mostrar \"Sin descuento\"\nfin_si",
+   "expected": [
+    "Sin descuento"
+   ],
+   "expectedByTest": [
+    [
+     "Sin descuento"
+    ]
+   ]
+  },
+  {
+   "id": "ret-08",
+   "module": "retos",
+   "kind": "build",
+   "difficulty": "desafio",
+   "title": "Registro de temperaturas",
+   "statement": "Calcula el promedio de [20, 24, 28] y muestra \"Promedio: 24\".",
+   "concepts": [
+    "arreglos",
+    "ciclos",
+    "funciones"
+   ],
+   "blocks": [
+    {
+     "id": "k1",
+     "text": "registros = [20, 24, 28]",
+     "indent": 0
+    },
+    {
+     "id": "k2",
+     "text": "total = 0",
+     "indent": 0
+    },
+    {
+     "id": "k3",
+     "text": "para i = 0 hasta longitud(registros) - 1",
+     "indent": 0
+    },
+    {
+     "id": "k4",
+     "text": "total = total + registros[i]",
+     "indent": 1
+    },
+    {
+     "id": "k5",
+     "text": "fin_para",
+     "indent": 0
+    },
+    {
+     "id": "k6",
+     "text": "mostrar \"Promedio:\", total / longitud(registros)",
+     "indent": 0
+    },
+    {
+     "id": "d1",
+     "text": "total = registros[i]",
+     "indent": 1,
+     "distractor": true
+    },
+    {
+     "id": "d2",
+     "text": "mostrar \"Promedio:\", total",
+     "indent": 0,
+     "distractor": true
+    }
+   ],
+   "order": [
+    "k1",
+    "k2",
+    "k3",
+    "k4",
+    "k5",
+    "k6"
+   ],
+   "hint": "El promedio divide el total entre la cantidad de elementos.",
+   "tests": [
+    {
+     "label": "Caso único",
+     "inputs": []
+    }
+   ],
+   "solution": "registros = [20, 24, 28]\ntotal = 0\npara i = 0 hasta longitud(registros) - 1\n    total = total + registros[i]\nfin_para\nmostrar \"Promedio:\", total / longitud(registros)",
+   "expected": [
+    "Promedio: 24"
+   ],
+   "expectedByTest": [
+    [
+     "Promedio: 24"
+    ]
+   ]
+  }
+ ],
+ "challenges": [
+  "ret-01",
+  "ret-02",
+  "ret-03",
+  "ret-04",
+  "ret-05",
+  "ret-06",
+  "ret-07",
+  "ret-08"
+ ],
+ "debugWorkshop": [
+  "var-04",
+  "con-03",
+  "cic-02",
+  "fun-03",
+  "arr-03",
+  "ret-01",
+  "ret-02",
+  "ret-06"
+ ],
+ "labSamples": [
+  {
+   "title": "Programa en blanco",
+   "code": "inicio\n    \nfin"
+  },
+  {
+   "title": "Variables y memoria",
+   "code": "inicio\n    x = 5\n    y = 2\n    x = x + y\n    mostrar x\nfin"
+  },
+  {
+   "title": "Decisión simple",
+   "code": "edad = 20\n\nsi edad >= 18 entonces\n    mostrar \"Mayor de edad\"\nsino\n    mostrar \"Menor de edad\"\nfin_si"
+  },
+  {
+   "title": "Ciclo con acumulador",
+   "code": "suma = 0\n\npara i = 1 hasta 5\n    suma = suma + i\nfin_para\n\nmostrar \"Suma:\", suma"
+  },
+  {
+   "title": "Función y retorno",
+   "code": "funcion area(base, altura)\n    retornar base * altura / 2\nfin_funcion\n\nmostrar area(6, 4)"
+  },
+  {
+   "title": "Arreglo y recorrido",
+   "code": "notas = [12, 15, 8, 18]\ntotal = 0\n\npara i = 0 hasta longitud(notas) - 1\n    total = total + notas[i]\nfin_para\n\nmostrar \"Promedio:\", total / longitud(notas)"
+  },
+  {
+   "title": "Objeto y estado",
+   "code": "producto = objeto(nombre: \"Teclado\", stock: 5)\nproducto.stock = producto.stock - 2\nmostrar producto.nombre, producto.stock"
+  }
+ ],
+ "reference": [
+  {
+   "id": "r-variables",
+   "title": "Variables",
+   "summary": "Espacio con nombre que guarda un valor y puede actualizarse.",
+   "items": [
+    {
+     "text": "Crear y asignar",
+     "code": "edad = 20"
+    },
+    {
+     "text": "Actualizar usando el valor anterior",
+     "code": "edad = edad + 1"
+    },
+    {
+     "text": "Intercambiar con auxiliar",
+     "code": "temporal = a\na = b\nb = temporal"
+    }
+   ]
+  },
+  {
+   "id": "r-operadores",
+   "title": "Operadores",
+   "summary": "Aritméticos: + - * / mod. Comparación: == != < <= > >=. Lógicos: y o no.",
+   "items": [
+    {
+     "text": "Aritmética y precedencia",
+     "code": "total = 2 + 3 * 4    // 14"
+    },
+    {
+     "text": "Residuo (paridad)",
+     "code": "esPar = numero mod 2 == 0"
+    },
+    {
+     "text": "Condición combinada",
+     "code": "valido = nota >= 0 y nota <= 20"
+    }
+   ]
+  },
+  {
+   "id": "r-condicionales",
+   "title": "Condicionales",
+   "summary": "Ejecutan un bloque según una condición lógica.",
+   "items": [
+    {
+     "text": "Decisión simple",
+     "code": "si nota >= 11 entonces\n    mostrar \"Aprobado\"\nfin_si"
+    },
+    {
+     "text": "Alternativa",
+     "code": "si x > 0 entonces\n    mostrar \"Positivo\"\nsino\n    mostrar \"No positivo\"\nfin_si"
+    },
+    {
+     "text": "Encadenada",
+     "code": "si x > 0 entonces\n    mostrar \"Positivo\"\nsino si x < 0 entonces\n    mostrar \"Negativo\"\nsino\n    mostrar \"Cero\"\nfin_si"
+    }
+   ]
+  },
+  {
+   "id": "r-ciclos",
+   "title": "Ciclos",
+   "summary": "Repiten instrucciones. mientras depende de una condición; para controla un rango.",
+   "items": [
+    {
+     "text": "mientras",
+     "code": "contador = 1\nmientras contador <= 5\n    mostrar contador\n    contador = contador + 1\nfin_mientras"
+    },
+    {
+     "text": "para",
+     "code": "para i = 1 hasta 5\n    mostrar i\nfin_para"
+    },
+    {
+     "text": "para con paso",
+     "code": "para i = 0 hasta 10 paso 2\n    mostrar i\nfin_para"
+    }
+   ]
+  },
+  {
+   "id": "r-funciones",
+   "title": "Funciones",
+   "summary": "Reciben parámetros, procesan y devuelven un valor con retornar.",
+   "items": [
+    {
+     "text": "Definir y devolver",
+     "code": "funcion doble(n)\n    retornar n * 2\nfin_funcion"
+    },
+    {
+     "text": "Llamar",
+     "code": "mostrar doble(7)"
+    }
+   ]
+  },
+  {
+   "id": "r-arreglos",
+   "title": "Arreglos",
+   "summary": "Colección ordenada de valores; la primera posición es 0.",
+   "items": [
+    {
+     "text": "Crear",
+     "code": "notas = [12, 15, 8]\narreglo vacio[3]"
+    },
+    {
+     "text": "Acceder y modificar",
+     "code": "mostrar notas[0]\nnotas[2] = 20"
+    },
+    {
+     "text": "Recorrer",
+     "code": "para i = 0 hasta longitud(notas) - 1\n    mostrar notas[i]\nfin_para"
+    }
+   ]
+  },
+  {
+   "id": "r-objetos",
+   "title": "Objetos",
+   "summary": "Agrupan atributos relacionados; su conjunto de valores es el estado.",
+   "items": [
+    {
+     "text": "Crear",
+     "code": "p = objeto(nombre: \"Teclado\", stock: 5)"
+    },
+    {
+     "text": "Leer y cambiar atributos",
+     "code": "mostrar p.nombre\np.stock = p.stock - 1"
+    },
+    {
+     "text": "Operación sobre el objeto",
+     "code": "funcion vender(item, cantidad)\n    item.stock = item.stock - cantidad\n    retornar item.stock\nfin_funcion"
+    }
+   ]
+  },
+  {
+   "id": "r-entrada",
+   "title": "Entrada, salida y funciones integradas",
+   "summary": "mostrar imprime; leer toma el siguiente dato de entrada del ejercicio.",
+   "items": [
+    {
+     "text": "Mostrar varios valores",
+     "code": "mostrar \"Total:\", total"
+    },
+    {
+     "text": "Leer",
+     "code": "leer edad"
+    },
+    {
+     "text": "Integradas",
+     "code": "longitud(a)  entero(x)  redondear(x)\nabsoluto(x)  maximo(a, b)  minimo(a, b)\ntexto(x)  numero(t)  potencia(b, e)"
+    }
+   ]
+  }
+ ],
+ "skills": [
+  {
+   "id": "variables",
+   "label": "Variables"
+  },
+  {
+   "id": "operadores",
+   "label": "Operadores"
+  },
+  {
+   "id": "condicionales",
+   "label": "Decisiones"
+  },
+  {
+   "id": "ciclos",
+   "label": "Ciclos"
+  },
+  {
+   "id": "funciones",
+   "label": "Funciones"
+  },
+  {
+   "id": "arreglos",
+   "label": "Arreglos"
+  },
+  {
+   "id": "objetos",
+   "label": "Objetos"
+  },
+  {
+   "id": "depuracion",
+   "label": "Depuración"
+  },
+  {
+   "id": "asignacion",
+   "label": "Asignación"
+  }
+ ]
+}
