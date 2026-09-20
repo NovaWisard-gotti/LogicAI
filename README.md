@@ -123,7 +123,7 @@ flutter build apk --release
 ```
 
 > El repositorio incluye el wrapper de Gradle (`gradlew`, `gradlew.bat` y
-> `gradle-wrapper.jar`) fijado en la version 8.13, la minima compatible con
+> `gradle-wrapper.jar`) fijado en la version 8.14.5, la minima compatible con
 > el Android Gradle Plugin del proyecto. Si alguna vez hace falta
 > regenerarlo, usa una distribucion de Gradle 8.x (no la que traiga
 > preinstalada tu maquina si es 9.6 o superior, porque AGP 8.x no es
